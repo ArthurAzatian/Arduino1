@@ -15,20 +15,25 @@ command 4 - suspicious eyes
 #include <SoftwareSerial.h>
 
 SoftwareSerial mySerial(0, 1); // RX, TX
-int LUP = 10;
-int LDWN = 9;
-int RUP = 8;
-int RDWN = 7;
+byte LUP = 10;
+byte LDWN = 9;
+byte RUP = 8;
+byte RDWN = 7;
 
 
 //заводим флаг целочисленного типа
-int FlagProgramm = 0; //Начальное значение флага 0
+byte FlagProgramm = 0; //Начальное значение флага 0
+byte prevans = 200; //предыдущая команда в сериале, 200 - для исключения стартовой коллизии
 void setup()
 {
   pinMode(LUP, OUTPUT);
+  digitalWrite(LUP, HIGH);
   pinMode(LDWN, OUTPUT);
+  digitalWrite(LDWN, HIGH);
   pinMode(RUP, OUTPUT);
+  digitalWrite(RUP, HIGH);
   pinMode(RDWN, OUTPUT);
+  digitalWrite(RDWN, HIGH);
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -49,6 +54,8 @@ void loop() // run over and over
   if (mySerial.available())
     Serial.write(mySerial.read());
   int ans = mySerial.read(); // returns ASCII values of numbers
+  
+if (ans!=prevans) {
 
   if(ans=='0') // close all headlights command (LOW - activate relay, HIGH - disactivate relay)
  {
@@ -451,7 +458,9 @@ void loop() // run over and over
     default:       // выполняется, если не выбрана ни одна альтернатива
       // Когда FlagProgramm равно 4 или 5 ничего не выполняется, фары и так в нужной позиции 
     ;
+  }
 }
+prevans = ans;
   }
   if (Serial.available())
     mySerial.write(Serial.read());
