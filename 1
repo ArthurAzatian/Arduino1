@@ -70,17 +70,16 @@ void loop() // run over and over
       digitalWrite(RDWN, LOW);    
       FlagProgramm = 0;
       Serial.println("-_- zzz");
-      delay(350);
+      delay(500);
       break;
     case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      
       FlagProgramm = 0;
       Serial.println("-_- zzz");
-      delay(650);
+      delay(700);
       break;
     case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
       digitalWrite(LUP, HIGH);
@@ -89,7 +88,7 @@ void loop() // run over and over
       digitalWrite(RDWN, LOW);
       FlagProgramm = 0;
       Serial.println("-_- zzz");
-      delay(650);
+      delay(700);
       break;
     case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
       digitalWrite(LUP, HIGH);
@@ -98,7 +97,7 @@ void loop() // run over and over
       digitalWrite(RDWN, LOW);
       FlagProgramm = 0;
       Serial.println("-_- zzz");
-      delay(350);
+      delay(500);
       break;
     default:
       // выполняется, если не выбрана ни одна альтернатива
@@ -127,7 +126,7 @@ void loop() // run over and over
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 1;       
       Serial.println("0_0");
-      delay(650);
+      delay(700);
       break;
     case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
       digitalWrite(LUP, LOW);
@@ -136,7 +135,7 @@ void loop() // run over and over
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 1;       
       Serial.println("0_0");
-      delay(350);
+      delay(500);
       break;
     case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
       digitalWrite(LUP, LOW);
@@ -145,7 +144,7 @@ void loop() // run over and over
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 1;       
       Serial.println("0_0");
-      delay(350);
+      delay(500);
       break;
     case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
       digitalWrite(LUP, LOW);
@@ -154,7 +153,7 @@ void loop() // run over and over
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 1;       
       Serial.println("0_0");
-      delay(350);
+      delay(700);
       break;
     default:
       // выполняется, если не выбрана ни одна альтернатива
@@ -176,7 +175,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, HIGH);
-      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      delay(400); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, LOW);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -195,7 +194,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(350); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      delay(400); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, LOW);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -209,12 +208,12 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL HEADLIGHTS GO DOWN AND UP!!!
+      delay(700); // IMPORTANT TO ADJUST THIS DELAY TILL HEADLIGHTS GO DOWN AND UP!!!
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      delay(400); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, LOW);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -224,14 +223,14 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 2;       
       Serial.println("^_^");
-      delay(500);
+      delay(350);
       break;
     case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
       digitalWrite(LUP, LOW);
@@ -243,7 +242,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      delay(400); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, LOW);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -253,7 +252,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -267,12 +266,12 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(200); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      delay(300); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      delay(400); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, LOW);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -282,7 +281,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for suspicious eyes
+      delay(210); //regular delay for suspicious eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -296,7 +295,7 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN AND UP!!!
+      delay(600); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN AND UP!!!
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
@@ -311,7 +310,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for suspicious eyes
+      delay(210); //regular delay for suspicious eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -333,7 +332,7 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -347,7 +346,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
@@ -366,28 +365,28 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 3;       
       Serial.println("^_^");
-      delay(500);
+      delay(350);
       break;
     case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, HIGH);
       FlagProgramm = 2;       
       Serial.println("^_^");
-      delay(500);
+      delay(350);
       break;
     default:       // выполняется, если не выбрана ни одна альтернатива
       // Когда FlagProgramm равно 2 или 3 ничего не выполняется, фары и так приоткрыты 
@@ -403,7 +402,7 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -417,7 +416,7 @@ void loop() // run over and over
       digitalWrite(LDWN, LOW);
       digitalWrite(RUP, LOW);
       digitalWrite(RDWN, HIGH);
-      delay(250); //regular delay for sleepy eyes
+      delay(210); //regular delay for sleepy eyes
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
@@ -431,7 +430,7 @@ void loop() // run over and over
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, HIGH);
       digitalWrite(RDWN, LOW);
-      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL RIGHT HEADLIGHT GO DOWN!!!
+      delay(210); // IMPORTANT TO ADJUST THIS DELAY TILL RIGHT HEADLIGHT GO DOWN!!!
       digitalWrite(LUP, HIGH);
       digitalWrite(LDWN, HIGH);
       digitalWrite(RUP, LOW);
