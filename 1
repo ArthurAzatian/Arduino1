@@ -1,0 +1,459 @@
+/*
+FlagProgramm=0 - All closed position
+FlagProgramm=1 - All open position
+FlagProgramm=2 - Sleepy eyes position, motor half way DOWN
+FlagProgramm=3 - Sleepy eyes position, motor half way UP
+FlagProgramm=4 - Suspicious eyes position, left motor half way UP
+FlagProgramm=5 - Suspicious eyes position, left motor half way DOWN
+command 0 - close all headlights
+command 1 - open all headlights
+command 2 - left headlight wink
+command 3 - sleepy eyes
+command 4 - suspicious eyes
+*/
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(0, 1); // RX, TX
+int LUP = 10;
+int LDWN = 9;
+int RUP = 8;
+int RDWN = 7;
+
+
+//заводим флаг целочисленного типа
+int FlagProgramm = 0; //Начальное значение флага 0
+void setup()
+{
+  pinMode(LUP, OUTPUT);
+  pinMode(LDWN, OUTPUT);
+  pinMode(RUP, OUTPUT);
+  pinMode(RDWN, OUTPUT);
+
+  // Open serial communications and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ;
+  }
+
+
+  Serial.println("HI MIATA -_0");
+
+  // set the data rate for the SoftwareSerial port
+  mySerial.begin(9600);
+
+}
+
+void loop() // run over and over
+{
+  if (mySerial.available())
+    Serial.write(mySerial.read());
+  int ans = mySerial.read(); // returns ASCII values of numbers
+
+  if(ans=='0') // close all headlights command (LOW - activate relay, HIGH - disactivate relay)
+ {
+   //Для работы с флагом используем конструкцию swith - case. Почитать можно тут: http://arduino.ru/Reference/SwitchCase или тут: https://playground.arduino.cc/Main/Cabinet/ 
+  switch (FlagProgramm) { //Тут указываем переменную значение которой проверяем, в нашем случае флаг
+    case 1: //выполняется, когда FlagProgramm равно 1, All open position
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      FlagProgramm = 0;       // Здесь можно изменить значение флага по необходимости на любое значение от 0 до 4
+      Serial.println("-_- zzz");
+      delay(500);
+      break;
+    case 2: //выполняется, когда FlagProgramm равно 2, Sleepy eyes position, motor half way DOWN
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);    
+      FlagProgramm = 0;
+      Serial.println("-_- zzz");
+      delay(350);
+      break;
+    case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      
+      FlagProgramm = 0;
+      Serial.println("-_- zzz");
+      delay(650);
+      break;
+    case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      FlagProgramm = 0;
+      Serial.println("-_- zzz");
+      delay(650);
+      break;
+    case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      FlagProgramm = 0;
+      Serial.println("-_- zzz");
+      delay(350);
+      break;
+    default:
+      // выполняется, если не выбрана ни одна альтернатива
+      // default необязателен
+      // Или здесь можно указать действия которые происходят когда флаг равен 0
+      // Когда FlagProgramm равно 0 ничего не выполняется, фары и так зактрыты 
+;
+  }
+ }
+   if(ans=='1') // open all headlights command (LOW - activate relay, HIGH - disactivate relay)
+ {
+  switch (FlagProgramm) { 
+    case 0: //выполняется, когда FlagProgramm равно 0, All closed position
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(500);
+      break;
+    case 2: //выполняется, когда FlagProgramm равно 2, Sleepy eyes position, motor half way DOWN
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(650);
+      break;
+    case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(350);
+      break;
+    case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(350);
+      break;
+    case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(350);
+      break;
+    default:
+      // выполняется, если не выбрана ни одна альтернатива
+      // Когда FlagProgramm равно 0 ничего не выполняется, фары и так открыты 
+;
+  }
+ }
+    if(ans=='2') // left headlight wink command (LOW - activate relay, HIGH - disactivate relay)
+ {
+  
+  switch (FlagProgramm) { 
+    case 0: //выполняется, когда FlagProgramm равно 0, All closed position
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL HEADLIGHTS GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      delay(500);  // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      FlagProgramm = 0;       
+      Serial.println("-_- zzz");
+      delay(500);
+      break;
+    case 1: //выполняется, когда FlagProgramm равно 1, All open position
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(350); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 1;       
+      Serial.println("0_0");
+      delay(500);
+      break;
+    case 2: //выполняется, когда FlagProgramm равно 2, Sleepy eyes position, motor half way DOWN
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL HEADLIGHTS GO DOWN AND UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500);  // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 2;       
+      Serial.println("^_^");
+      delay(500);
+      break;
+    case 3: //выполняется когда  FlagProgramm равно 3, Sleepy eyes position, motor half way UP
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(200); // IMPORTANT TO ADJUST THIS DELAY TILL HEADLIGHTS GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500);  // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH); 
+      FlagProgramm = 2;       
+      Serial.println("^_^");
+      delay(350);
+      break;
+    case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(200); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500);  // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for suspicious eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 5;       
+      Serial.println("0_o");
+      delay(350);
+      break;
+    case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN AND UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(500);  // IMPORTANT TO ADJUST THIS DELAY TILL LEFT HEADLIGHT GO UP!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for suspicious eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 5;       
+      Serial.println("0_o");
+      delay(350);
+      break;
+    default:
+    ;
+}
+  }
+      if(ans=='3') // sleepy eyes command (LOW - activate relay, HIGH - disactivate relay)
+ {
+  
+  switch (FlagProgramm) { 
+    case 0: //выполняется, когда FlagProgramm равно 0, All closed position
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 3;       
+      Serial.println("^_^");
+      delay(500);
+      break;
+    case 1: //выполняется, когда FlagProgramm равно 1, All open position
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 2;       
+      Serial.println("^_^");
+      delay(500);
+      break;
+    case 4: //выполняется, когда FlagProgramm равно 4, Suspicious eyes position, left motor half way UP
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(500); // IMPORTANT TO ADJUST THIS DELAY TILL RIGHT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 3;       
+      Serial.println("^_^");
+      delay(500);
+      break;
+    case 5: //выполняется, когда FlagProgramm равно 5, Suspicious eyes position, left motor half way DOWN
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 2;       
+      Serial.println("^_^");
+      delay(500);
+      break;
+    default:       // выполняется, если не выбрана ни одна альтернатива
+      // Когда FlagProgramm равно 2 или 3 ничего не выполняется, фары и так приоткрыты 
+    ;
+}
+  }
+      if(ans=='4') // suspicious eyes command (LOW - activate relay, HIGH - disactivate relay)
+ {
+  
+  switch (FlagProgramm) { 
+    case 0: //выполняется, когда FlagProgramm равно 0, All closed position
+      digitalWrite(LUP, LOW);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 4;       
+      Serial.println("0_o");
+      delay(500);
+      break;
+    case 1: //выполняется, когда FlagProgramm равно 1, All open position
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, LOW);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      delay(250); //regular delay for sleepy eyes
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 5;       
+      Serial.println("0_o");
+      delay(500);
+      break;
+    case 2: //выполняется, когда FlagProgramm равно 2, Sleepy eyes position, motor half way DOWN
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, HIGH);
+      digitalWrite(RDWN, LOW);
+      delay(250); // IMPORTANT TO ADJUST THIS DELAY TILL RIGHT HEADLIGHT GO DOWN!!!
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 5;       
+      Serial.println("0_o");
+      delay(500);
+      break;
+    case 3: //выполняется когда FlagProgramm равно 3, Sleepy eyes position, motor half way UP
+      digitalWrite(LUP, HIGH);
+      digitalWrite(LDWN, HIGH);
+      digitalWrite(RUP, LOW);
+      digitalWrite(RDWN, HIGH);
+      FlagProgramm = 4;       
+      Serial.println("0_o");
+      delay(500);
+      break;
+    default:       // выполняется, если не выбрана ни одна альтернатива
+      // Когда FlagProgramm равно 4 или 5 ничего не выполняется, фары и так в нужной позиции 
+    ;
+}
+  }
+  if (Serial.available())
+    mySerial.write(Serial.read());
+}
